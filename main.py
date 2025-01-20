@@ -117,7 +117,7 @@ def run_parallel_function():
 
 
 root = tk.Tk()
-root.title("geometry Ai")
+root.title("Geometry Ai")
 root.resizable(False, False)
 
 console_frame = tk.Frame(root)
