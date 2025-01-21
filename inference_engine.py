@@ -911,7 +911,7 @@ def compute(space, command_given):
     isoceles()
     revisoceles()
     #revparallel()
-    for _ in range(1):
+    for _ in range(2):
         if len(all_tri) > 1:
             for item in itertools.combinations(all_tri, 2):
                 two(item[0], item[1])
