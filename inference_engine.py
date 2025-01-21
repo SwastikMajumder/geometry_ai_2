@@ -7,7 +7,7 @@ from fractions import Fraction
 def compute(space, command_given):
     points = space.points
     point_pairs = space.point_pairs
-    perpendicular_angle_list = space. perpendicular_angle_list
+    perpendicular_angle_list = space.perpendicular_angle_list
     list_1 = linear_algebra.EqList()
     list_2 = linear_algebra.EqList()
     eq_list_3 = []
@@ -470,7 +470,8 @@ def compute(space, command_given):
         eq = str_form(eq)
         
         for angle in [angle1 + angle2, angle2 + angle1]:
-            if sss_rule(*angle) or sas_rule(*angle) or aas_rule(*angle) or rhs_rule(*angle):
+            
+            if sss_rule(*angle) or sas_rule(*angle) or asa_rule(*angle) or rhs_rule(*angle):
                 eq_list_3.append(eq)
                 do_cpct()
                 return eq
@@ -540,13 +541,13 @@ def compute(space, command_given):
         )
 
 
-    def aas_rule(a1, a2, a3, b1, b2, b3):
-        line = [line_sort(a2 + a3), line_sort(b2 + b3)]
+    def asa_rule(a1, a2, a3, b1, b2, b3):
+        line = [line_sort(a1 + a2), line_sort(b1 + b2)]
         angle = [
-            standard_angle(a1 + a2 + a3),
-            standard_angle(b1 + b2 + b3),
             standard_angle(a3 + a1 + a2),
             standard_angle(b3 + b1 + b2),
+            standard_angle(a3 + a2 + a1),
+            standard_angle(b3 + b2 + b1),
         ]
 
         for item in line:
@@ -617,19 +618,20 @@ def compute(space, command_given):
                     tmp[standard_angle(angle1)] = 1
                     tmp[standard_angle(angle2)] = -1
                     list_1.add_equation(tmp)
-                    
+                
                 for item2 in itertools.combinations(m2, 2):
                     line1 = "".join([x[0] for x in item2])
                     line2 = "".join([x[1] for x in item2])
                     line1 = line_sort(line1)
                     line2 = line_sort(line2)
-                    if line1 == line2:
+                    if line1 == line2 or tuple(sorted([line1, line2])) in list_2.pair_eq:
                         continue
+                    
                     tmp = {}
                     tmp[line1] = 1
                     tmp[line2] = -1
                     list_2.add_equation(tmp)
-                
+                    
     def rhs_rule(a1, a2, a3, b1, b2, b3):
         line = [
             line_sort(a1 + a2),
@@ -902,14 +904,14 @@ def compute(space, command_given):
     for item in perpendicular_angle_list:
         tmp = {}
         tmp[item] = 1
-        tmp["="] = 90
+        tmp["="] = Fraction(90)
         list_1.add_equation(tmp)
     command2(command_given)
     
     isoceles()
     revisoceles()
     #revparallel()
-    for _ in range(2):
+    for _ in range(1):
         if len(all_tri) > 1:
             for item in itertools.combinations(all_tri, 2):
                 two(item[0], item[1])
