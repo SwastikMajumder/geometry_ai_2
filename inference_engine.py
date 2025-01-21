@@ -471,7 +471,16 @@ def compute(space, command_given):
         
         for angle in [angle1 + angle2, angle2 + angle1]:
             
-            if sss_rule(*angle) or sas_rule(*angle) or asa_rule(*angle) or rhs_rule(*angle):
+            #if sss_rule(*angle) or sas_rule(*angle) or asa_rule(*angle) or rhs_rule(*angle):
+            if sss_rule(*angle) or sas_rule(*angle) or rhs_rule(*angle):
+                print()
+                if sss_rule(*angle):
+                    print('sss')
+                elif sas_rule(*angle):
+                    print('sas')
+                elif rhs_rule(*angle):
+                    print('rhs')
+                print(angle)
                 eq_list_3.append(eq)
                 do_cpct()
                 return eq
@@ -614,9 +623,13 @@ def compute(space, command_given):
                 for item2 in itertools.permutations(m2):
                     angle1 = "".join([x[0] for x in item2])
                     angle2 = "".join([x[1] for x in item2])
+                    angle1 = standard_angle(angle1)
+                    angle2 = standard_angle(angle2)
+                    if angle1 == angle2:
+                        continue
                     tmp = {}
-                    tmp[standard_angle(angle1)] = 1
-                    tmp[standard_angle(angle2)] = -1
+                    tmp[angle1] = 1
+                    tmp[angle2] = -1
                     list_1.add_equation(tmp)
                 
                 for item2 in itertools.combinations(m2, 2):
@@ -626,7 +639,7 @@ def compute(space, command_given):
                     line2 = line_sort(line2)
                     if line1 == line2 or tuple(sorted([line1, line2])) in list_2.pair_eq:
                         continue
-                    
+                    print(line1, line2)
                     tmp = {}
                     tmp[line1] = 1
                     tmp[line2] = -1
@@ -911,7 +924,7 @@ def compute(space, command_given):
     isoceles()
     revisoceles()
     #revparallel()
-    for _ in range(2):
+    for _ in range(1):
         if len(all_tri) > 1:
             for item in itertools.combinations(all_tri, 2):
                 two(item[0], item[1])
