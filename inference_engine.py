@@ -697,7 +697,11 @@ def compute(space, command_given):
         elif eq_type == "parallel_line":
             parallel(string)
     def command2(string):
+        
+            
         for item in string.split("\n"):
+            if item == "equation none":
+                continue
             command(item)
 
     
