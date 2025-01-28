@@ -1,0 +1,11 @@
+draw triangle
+extend AC from C
+extend BC from C
+join EA
+join EC
+join CD
+join BD
+equation line_eq CE BC
+equation line_eq AC CD
+equation angle_val ABD 90
+compute

@@ -1,0 +1,4 @@
+draw triangle
+equation angle_eq ABC ACB
+equation angle_eq ABC BAC
+compute

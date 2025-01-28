@@ -1,0 +1,8 @@
+draw triangle
+perpendicular A to BC
+perpendicular B to AC
+join CF
+extend CF to AB
+join FG
+equation none
+compute
