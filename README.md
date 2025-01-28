@@ -2,7 +2,7 @@ excuse arbitrary folder, file and code variable naming. <br>
 run the main.py to get this output. this project solves a geometry questions from grade 9 NCERT textbook chapter 7 triangle. NCERT books are relevant in the indian education system. <br>
 install the required libraires like ``pip install sympy`` before running the project. <br>
 sympy was only used to compute the rref of a matrix. its use was done for a trivial reason <br>
-![image](https://github.com/user-attachments/assets/2d33fcff-9a10-4c2d-ab31-f45abc1011f9) <br>
+![image](https://github.com/user-attachments/assets/20399e8d-eb28-4719-9910-11194d3d8c71) <br>
 ```
 >>> draw quadrilateral
 >>> join AC
